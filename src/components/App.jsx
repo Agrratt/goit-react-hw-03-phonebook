@@ -5,7 +5,7 @@ import { ListContacts } from 'components/ListContacts/ListContacts';
 import { Filter } from 'components/Filter/Filter';
 import { Container } from 'components/App.styled';
 
-const KEY_LS = 'contacts';
+// const KEY_LS = 'contacts';
 
 export class App extends Component {
   state = {
