@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ReactComponent as AddIcon } from 'components/icons/addContact.svg';
 import PropTypes from 'prop-types';
 import {FormContainer, Label, InputName, ButtonAdd} from 'components/Form/Form.styled'
 
@@ -36,7 +37,8 @@ render() {
         <FormContainer onSubmit={this.handleSubmit}>
           <Label>
             Name 
-            <InputName
+          <InputName
+            autoComplete="off"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -48,26 +50,26 @@ render() {
           />
           </Label>
           <Label >
-            Number <input type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-              value={this.state.number}
-              onChange={this.handleChange} 
+          Number
+          <input
+            autoComplete="off"
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={this.state.number}
+            onChange={this.handleChange} 
             />
           </Label>
 
-          <ButtonAdd type="submit">
-            Add contact
-          </ButtonAdd>
+        <ButtonAdd type="submit">
+              Add contact <AddIcon width='12' height='15' />
+        </ButtonAdd>
+        
 
         </FormContainer>
     )
     };
 
 };
-
-// Form.propTypes = {
-//   onFormSubmit: PropTypes.func
-// }

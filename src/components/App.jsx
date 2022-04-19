@@ -3,7 +3,9 @@ import { nanoid } from 'nanoid';
 import { Form } from 'components/Form/Form';
 import { ListContacts } from 'components/ListContacts/ListContacts';
 import { Filter } from 'components/Filter/Filter';
-import {Container} from 'components/App.styled';
+import { Container } from 'components/App.styled';
+
+const KEY_LS = 'contacts';
 
 export class App extends Component {
   state = {
@@ -29,14 +31,6 @@ export class App extends Component {
       }
       return {contacts: [contact, ...contacts]}
     });
-
-    // this.state.contacts.map(itemContact => {
-    //   if (itemContact.name === contact.name) {
-    //     return alert(`${contact.name} is already in contacts`);
-    //   }
-    //   return itemContact;
-    // });
-    
   };
 
   onChangeFilter = (evt) => {
@@ -55,7 +49,25 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id)
     }));
-  }
+  };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('KEY_LS');
+    const parsedContacts = JSON.parse(contacts);
+    
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+    
+  };  
+  
+  componentDidUpdate(_, prevState) { 
+
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('KEY_LS', JSON.stringify(this.state.contacts))
+    };
+  };
+
 
   render() {
     const { filter } = this.state;

@@ -1,5 +1,8 @@
+import React from "react";
 import PropTypes from 'prop-types';
-import { ButtonDelete, BlockName } from 'components/ItemContacts/ItemContacts.styled';
+import { BlockName } from 'components/ItemContacts/ItemContacts.styled';
+import { IconButton } from 'components/IconButton/IconButton';
+import { ReactComponent as DeleteIcon } from 'components/icons/deleteIcon.svg';
 
 
 export const ItemContacts = ({ name, number, deleteContact, id }) => {
@@ -8,7 +11,16 @@ export const ItemContacts = ({ name, number, deleteContact, id }) => {
             <li>
                 <BlockName>{name}</BlockName>
                 <span>{number}</span>
-                <ButtonDelete type="button" onClick={() => deleteContact(id)}>Delete</ButtonDelete>
+
+                <IconButton
+                    deleteContact={deleteContact}
+                    id={id}
+                    aria-label='Delete contact'
+                >
+                     <DeleteIcon width='12' height='12' fill='#9bd6fa'/>
+                </IconButton>
+
+                {/* <ButtonDelete type="button" onClick={() => deleteContact(id)}>Delete</ButtonDelete> */}
             </li>
         </>
     );
